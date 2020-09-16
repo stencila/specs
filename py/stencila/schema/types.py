@@ -2904,7 +2904,129 @@ are not included in the application distribution.
             self.softwareVersion = softwareVersion
 
 
-class SoftwareEnvironment(Thing):
+class SoftwareSourceCode(CreativeWork):
+    """
+    Computer programming source code. Example: Full (compile ready) solutions,
+    code snippet samples, scripts, templates.
+    """
+
+    codeRepository: Optional[str] = None
+    """Link to the repository where the un-compiled, human readable code and related
+code is located.
+"""
+
+    codeSampleType: Optional[str] = None
+    """What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template.
+"""
+
+    maintainers: Optional[Array[Union["Organization", "Person"]]] = None
+    """The people or organizations who maintain the software.
+"""
+
+    programmingLanguage: Optional[str] = None
+    """The computer programming language.
+"""
+
+    runtimePlatform: Optional[Array[str]] = None
+    """Runtime platform or script interpreter dependencies (Example - Java v1,
+Python2.3, .Net Framework 3.0).
+"""
+
+    softwareRequirements: Optional[Array[Union["SoftwareSourceCode", "SoftwareApplication", str]]] = None
+    """Dependency requirements for the software."""
+
+    targetProducts: Optional[Array["SoftwareApplication"]] = None
+    """Target operating system or product to which the code applies.
+"""
+
+
+    def __init__(
+        self,
+        about: Optional[Array["Thing"]] = None,
+        alternateNames: Optional[Array[str]] = None,
+        authors: Optional[Array[Union["Person", "Organization"]]] = None,
+        codeRepository: Optional[str] = None,
+        codeSampleType: Optional[str] = None,
+        content: Optional[Array["Node"]] = None,
+        dateAccepted: Optional[Union["Date", str]] = None,
+        dateCreated: Optional[Union["Date", str]] = None,
+        dateModified: Optional[Union["Date", str]] = None,
+        datePublished: Optional[Union["Date", str]] = None,
+        dateReceived: Optional[Union["Date", str]] = None,
+        description: Optional[Union[str, Array["Node"]]] = None,
+        editors: Optional[Array["Person"]] = None,
+        fundedBy: Optional[Array[Union["Grant", "MonetaryGrant"]]] = None,
+        funders: Optional[Array[Union["Person", "Organization"]]] = None,
+        genre: Optional[Array[str]] = None,
+        id: Optional[str] = None,
+        identifiers: Optional[Array[Union[str, "PropertyValue"]]] = None,
+        images: Optional[Array[Union[str, "ImageObject"]]] = None,
+        isPartOf: Optional["CreativeWorkTypes"] = None,
+        keywords: Optional[Array[str]] = None,
+        licenses: Optional[Array[Union[str, "CreativeWorkTypes"]]] = None,
+        maintainers: Optional[Array[Union["Organization", "Person"]]] = None,
+        meta: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        parts: Optional[Array["CreativeWorkTypes"]] = None,
+        programmingLanguage: Optional[str] = None,
+        publisher: Optional[Union["Person", "Organization"]] = None,
+        references: Optional[Array[Union[str, "CreativeWorkTypes"]]] = None,
+        runtimePlatform: Optional[Array[str]] = None,
+        softwareRequirements: Optional[Array[Union["SoftwareSourceCode", "SoftwareApplication", str]]] = None,
+        targetProducts: Optional[Array["SoftwareApplication"]] = None,
+        text: Optional[str] = None,
+        title: Optional[Union[str, Array["Node"]]] = None,
+        url: Optional[str] = None,
+        version: Optional[Union[str, float]] = None
+    ) -> None:
+        super().__init__(
+            about=about,
+            alternateNames=alternateNames,
+            authors=authors,
+            content=content,
+            dateAccepted=dateAccepted,
+            dateCreated=dateCreated,
+            dateModified=dateModified,
+            datePublished=datePublished,
+            dateReceived=dateReceived,
+            description=description,
+            editors=editors,
+            fundedBy=fundedBy,
+            funders=funders,
+            genre=genre,
+            id=id,
+            identifiers=identifiers,
+            images=images,
+            isPartOf=isPartOf,
+            keywords=keywords,
+            licenses=licenses,
+            meta=meta,
+            name=name,
+            parts=parts,
+            publisher=publisher,
+            references=references,
+            text=text,
+            title=title,
+            url=url,
+            version=version
+        )
+        if codeRepository is not None:
+            self.codeRepository = codeRepository
+        if codeSampleType is not None:
+            self.codeSampleType = codeSampleType
+        if maintainers is not None:
+            self.maintainers = maintainers
+        if programmingLanguage is not None:
+            self.programmingLanguage = programmingLanguage
+        if runtimePlatform is not None:
+            self.runtimePlatform = runtimePlatform
+        if softwareRequirements is not None:
+            self.softwareRequirements = softwareRequirements
+        if targetProducts is not None:
+            self.targetProducts = targetProducts
+
+
+class SoftwareEnvironment(SoftwareSourceCode):
     """A computational environment."""
 
     name: str
@@ -2923,26 +3045,82 @@ class SoftwareEnvironment(Thing):
     def __init__(
         self,
         name: str,
+        about: Optional[Array["Thing"]] = None,
         adds: Optional[Array["SoftwareSourceCode"]] = None,
         alternateNames: Optional[Array[str]] = None,
+        authors: Optional[Array[Union["Person", "Organization"]]] = None,
+        codeRepository: Optional[str] = None,
+        codeSampleType: Optional[str] = None,
+        content: Optional[Array["Node"]] = None,
+        dateAccepted: Optional[Union["Date", str]] = None,
+        dateCreated: Optional[Union["Date", str]] = None,
+        dateModified: Optional[Union["Date", str]] = None,
+        datePublished: Optional[Union["Date", str]] = None,
+        dateReceived: Optional[Union["Date", str]] = None,
         description: Optional[Union[str, Array["Node"]]] = None,
+        editors: Optional[Array["Person"]] = None,
         extends: Optional[Array["SoftwareEnvironment"]] = None,
+        fundedBy: Optional[Array[Union["Grant", "MonetaryGrant"]]] = None,
+        funders: Optional[Array[Union["Person", "Organization"]]] = None,
+        genre: Optional[Array[str]] = None,
         id: Optional[str] = None,
         identifiers: Optional[Array[Union[str, "PropertyValue"]]] = None,
         images: Optional[Array[Union[str, "ImageObject"]]] = None,
+        isPartOf: Optional["CreativeWorkTypes"] = None,
+        keywords: Optional[Array[str]] = None,
+        licenses: Optional[Array[Union[str, "CreativeWorkTypes"]]] = None,
+        maintainers: Optional[Array[Union["Organization", "Person"]]] = None,
         meta: Optional[Dict[str, Any]] = None,
+        parts: Optional[Array["CreativeWorkTypes"]] = None,
+        programmingLanguage: Optional[str] = None,
+        publisher: Optional[Union["Person", "Organization"]] = None,
+        references: Optional[Array[Union[str, "CreativeWorkTypes"]]] = None,
         removes: Optional[Array["SoftwareSourceCode"]] = None,
-        url: Optional[str] = None
+        runtimePlatform: Optional[Array[str]] = None,
+        softwareRequirements: Optional[Array[Union["SoftwareSourceCode", "SoftwareApplication", str]]] = None,
+        targetProducts: Optional[Array["SoftwareApplication"]] = None,
+        text: Optional[str] = None,
+        title: Optional[Union[str, Array["Node"]]] = None,
+        url: Optional[str] = None,
+        version: Optional[Union[str, float]] = None
     ) -> None:
         super().__init__(
             name=name,
+            about=about,
             alternateNames=alternateNames,
+            authors=authors,
+            codeRepository=codeRepository,
+            codeSampleType=codeSampleType,
+            content=content,
+            dateAccepted=dateAccepted,
+            dateCreated=dateCreated,
+            dateModified=dateModified,
+            datePublished=datePublished,
+            dateReceived=dateReceived,
             description=description,
+            editors=editors,
+            fundedBy=fundedBy,
+            funders=funders,
+            genre=genre,
             id=id,
             identifiers=identifiers,
             images=images,
+            isPartOf=isPartOf,
+            keywords=keywords,
+            licenses=licenses,
+            maintainers=maintainers,
             meta=meta,
-            url=url
+            parts=parts,
+            programmingLanguage=programmingLanguage,
+            publisher=publisher,
+            references=references,
+            runtimePlatform=runtimePlatform,
+            softwareRequirements=softwareRequirements,
+            targetProducts=targetProducts,
+            text=text,
+            title=title,
+            url=url,
+            version=version
         )
         if name is not None:
             self.name = name
@@ -3084,128 +3262,6 @@ class SoftwareSession(Thing):
             self.timeoutRequest = timeoutRequest
         if volumeMounts is not None:
             self.volumeMounts = volumeMounts
-
-
-class SoftwareSourceCode(CreativeWork):
-    """
-    Computer programming source code. Example: Full (compile ready) solutions,
-    code snippet samples, scripts, templates.
-    """
-
-    codeRepository: Optional[str] = None
-    """Link to the repository where the un-compiled, human readable code and related
-code is located.
-"""
-
-    codeSampleType: Optional[str] = None
-    """What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template.
-"""
-
-    maintainers: Optional[Array[Union["Organization", "Person"]]] = None
-    """The people or organizations who maintain the software.
-"""
-
-    programmingLanguage: Optional[str] = None
-    """The computer programming language.
-"""
-
-    runtimePlatform: Optional[Array[str]] = None
-    """Runtime platform or script interpreter dependencies (Example - Java v1,
-Python2.3, .Net Framework 3.0).
-"""
-
-    softwareRequirements: Optional[Array[Union["SoftwareSourceCode", "SoftwareApplication", str]]] = None
-    """Dependency requirements for the software."""
-
-    targetProducts: Optional[Array["SoftwareApplication"]] = None
-    """Target operating system or product to which the code applies.
-"""
-
-
-    def __init__(
-        self,
-        about: Optional[Array["Thing"]] = None,
-        alternateNames: Optional[Array[str]] = None,
-        authors: Optional[Array[Union["Person", "Organization"]]] = None,
-        codeRepository: Optional[str] = None,
-        codeSampleType: Optional[str] = None,
-        content: Optional[Array["Node"]] = None,
-        dateAccepted: Optional[Union["Date", str]] = None,
-        dateCreated: Optional[Union["Date", str]] = None,
-        dateModified: Optional[Union["Date", str]] = None,
-        datePublished: Optional[Union["Date", str]] = None,
-        dateReceived: Optional[Union["Date", str]] = None,
-        description: Optional[Union[str, Array["Node"]]] = None,
-        editors: Optional[Array["Person"]] = None,
-        fundedBy: Optional[Array[Union["Grant", "MonetaryGrant"]]] = None,
-        funders: Optional[Array[Union["Person", "Organization"]]] = None,
-        genre: Optional[Array[str]] = None,
-        id: Optional[str] = None,
-        identifiers: Optional[Array[Union[str, "PropertyValue"]]] = None,
-        images: Optional[Array[Union[str, "ImageObject"]]] = None,
-        isPartOf: Optional["CreativeWorkTypes"] = None,
-        keywords: Optional[Array[str]] = None,
-        licenses: Optional[Array[Union[str, "CreativeWorkTypes"]]] = None,
-        maintainers: Optional[Array[Union["Organization", "Person"]]] = None,
-        meta: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        parts: Optional[Array["CreativeWorkTypes"]] = None,
-        programmingLanguage: Optional[str] = None,
-        publisher: Optional[Union["Person", "Organization"]] = None,
-        references: Optional[Array[Union[str, "CreativeWorkTypes"]]] = None,
-        runtimePlatform: Optional[Array[str]] = None,
-        softwareRequirements: Optional[Array[Union["SoftwareSourceCode", "SoftwareApplication", str]]] = None,
-        targetProducts: Optional[Array["SoftwareApplication"]] = None,
-        text: Optional[str] = None,
-        title: Optional[Union[str, Array["Node"]]] = None,
-        url: Optional[str] = None,
-        version: Optional[Union[str, float]] = None
-    ) -> None:
-        super().__init__(
-            about=about,
-            alternateNames=alternateNames,
-            authors=authors,
-            content=content,
-            dateAccepted=dateAccepted,
-            dateCreated=dateCreated,
-            dateModified=dateModified,
-            datePublished=datePublished,
-            dateReceived=dateReceived,
-            description=description,
-            editors=editors,
-            fundedBy=fundedBy,
-            funders=funders,
-            genre=genre,
-            id=id,
-            identifiers=identifiers,
-            images=images,
-            isPartOf=isPartOf,
-            keywords=keywords,
-            licenses=licenses,
-            meta=meta,
-            name=name,
-            parts=parts,
-            publisher=publisher,
-            references=references,
-            text=text,
-            title=title,
-            url=url,
-            version=version
-        )
-        if codeRepository is not None:
-            self.codeRepository = codeRepository
-        if codeSampleType is not None:
-            self.codeSampleType = codeSampleType
-        if maintainers is not None:
-            self.maintainers = maintainers
-        if programmingLanguage is not None:
-            self.programmingLanguage = programmingLanguage
-        if runtimePlatform is not None:
-            self.runtimePlatform = runtimePlatform
-        if softwareRequirements is not None:
-            self.softwareRequirements = softwareRequirements
-        if targetProducts is not None:
-            self.targetProducts = targetProducts
 
 
 class StringValidator(Entity):
@@ -3676,7 +3732,7 @@ ContactPointTypes = Union["ContactPoint", "PostalAddress"]
 """
 All type schemas that are derived from CreativeWork
 """
-CreativeWorkTypes = Union["CreativeWork", "Article", "AudioObject", "Collection", "Datatable", "Figure", "ImageObject", "MediaObject", "Periodical", "PublicationIssue", "PublicationVolume", "SoftwareApplication", "SoftwareSourceCode", "Table", "VideoObject"]
+CreativeWorkTypes = Union["CreativeWork", "Article", "AudioObject", "Collection", "Datatable", "Figure", "ImageObject", "MediaObject", "Periodical", "PublicationIssue", "PublicationVolume", "SoftwareApplication", "SoftwareEnvironment", "SoftwareSourceCode", "Table", "VideoObject"]
 
 
 """
@@ -3725,6 +3781,12 @@ Node = Union[None, bool, float, int, str, Array[Any], Dict[str, Any], "Entity"]
 All type schemas that are derived from NumberValidator
 """
 NumberValidatorTypes = Union["NumberValidator", "IntegerValidator"]
+
+
+"""
+All type schemas that are derived from SoftwareSourceCode
+"""
+SoftwareSourceCodeTypes = Union["SoftwareSourceCode", "SoftwareEnvironment"]
 
 
 """

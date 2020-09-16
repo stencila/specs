@@ -1,6 +1,6 @@
 title: SoftwareEnvironment
 '@id': stencila:SoftwareEnvironment
-extends: Thing
+extends: SoftwareSourceCode
 role: primary
 status: unstable
 category: code

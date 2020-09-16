@@ -34,6 +34,8 @@ RUN make setup
 # to delete or modify
 ARG USER_ID=1000
 ARG GROUP_ID=1000
-RUN groupadd --gid $GROUP_ID guest
-RUN useradd --uid $USER_ID -g $GROUP_ID guest
+RUN groupadd --gid $GROUP_ID guest && \
+    useradd --uid $USER_ID -g $GROUP_ID guest && \
+    mkdir -p /home/guest && \
+    chown -R guest /home/guest
 USER guest

@@ -1,0 +1,84 @@
+title: ContainerImage
+'@id': stencila:ContainerImage
+extends: SoftwareApplication
+role: primary
+status: experimental
+category: code
+description: A linux container image (such as provided by Docker or Singularity) that is used in scientific computing.
+properties:
+  annotations:
+    '@id': stencila:annotations
+    description: | 
+      One or more annotations (labels) for the container image, typically key value pairs represented as strings
+    aliases:
+      - labels
+    type: array
+    items:
+      anyOf:
+        - type: string
+        - $ref: PropertyValue
+  applicationCategory:
+    '@id': stencila:applicationCategory
+    description: A container image is the binary that empowers Linux containerization
+    enum: ['Linux containerization']
+  containerRuntimePlatform:
+    '@id': stencila:containerRuntimePlatform
+    description: The container technology (e.g., Docker or Singularity)
+    type: string
+  config:
+    '@id': stencila:config
+    description: The container configuration, typically dumped json in the case of a manifest or other text
+    aliases:
+      - manifest
+    type: string
+  configMediaType:
+    '@id': stencila:configMediaType
+    description: The media type for an associated ContainerImage config
+    type: string
+  from:
+    '@id': stencila:from
+    description: One or more base images that this container extends (e.g., a FROM directive)
+    type: array
+    items:
+      $ref: ContainerImage
+  imageMediaType:
+    '@id': stencila:imageMediaType
+    description: | 
+       The media type for the image (see https://github.com/opencontainers/image-spec/blob/master/media-types.md).
+    type: string
+  label:
+    '@id': stencila:label
+    description: A short label for the container image, typically the unique resource identifier.
+    aliases:
+      - uri
+      - uniqueResourceIdentifier
+    type: string
+  layers:
+    '@id': stencila:layers
+    description: | 
+      One or more layers (e.g., a single binary or .tar.gz files to extract)
+    type: array
+    items:
+      $ref: SoftwareSourceCode
+  layersMediaType:
+    '@id': stencila:layersMediaType
+    description: The media type for the image layers (see https://github.com/opencontainers/image-spec/blob/master/media-types.md)
+    type: string
+  containerRecipe:
+    '@id': stencila:containerRecipe
+    description: |
+      A container recipe file used to generate the container (e.g., Dockerfile or Singularity recipe)
+    aliases:
+      - definitionFile
+    anyOf:
+      - type: string
+      - $ref: ContainerRecipe
+  softwareEnvironment:
+    '@id': schema:softwareEnvironment
+    description: One or more software environments included in the container image.
+    $comment: An array of of SoftwareEnvironment
+    type: array
+    items:
+      $ref: SoftwareEnvironment
+required:
+  - label

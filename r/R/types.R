@@ -3030,145 +3030,6 @@ SoftwareApplication <- function(
 }
 
 
-#' A computational environment.
-#'
-#' @name SoftwareEnvironment
-#' @param name The name of the item. \bold{Required}.
-#' @param adds The packages that this environment adds to the base environments listed under `extends` (if any).,
-#' @param alternateNames Alternate names (aliases) for the item.
-#' @param description A description of the item.
-#' @param extends Other environments that this environment extends by adding or removing packages.,
-#' @param id The identifier for this item.
-#' @param identifiers Any kind of identifier for any kind of Thing.
-#' @param images Images of the item.
-#' @param meta Metadata associated with this item.
-#' @param removes The packages that this environment removes from the base environments listed under `extends` (if any).,
-#' @param url The URL of the item.
-#' @seealso \code{\link{Thing}}
-#' @export
-SoftwareEnvironment <- function(
-  name,
-  adds,
-  alternateNames,
-  description,
-  extends,
-  id,
-  identifiers,
-  images,
-  meta,
-  removes,
-  url
-){
-  self <- Thing(
-    name = name,
-    alternateNames = alternateNames,
-    description = description,
-    id = id,
-    identifiers = identifiers,
-    images = images,
-    meta = meta,
-    url = url
-  )
-  self$type <- as_scalar("SoftwareEnvironment")
-  self[["name"]] <- check_property("SoftwareEnvironment", "name", TRUE, missing(name), "character", name)
-  self[["adds"]] <- check_property("SoftwareEnvironment", "adds", FALSE, missing(adds), Array(SoftwareSourceCode), adds)
-  self[["extends"]] <- check_property("SoftwareEnvironment", "extends", FALSE, missing(extends), Array(SoftwareEnvironment), extends)
-  self[["removes"]] <- check_property("SoftwareEnvironment", "removes", FALSE, missing(removes), Array(SoftwareSourceCode), removes)
-  class(self) <- c(class(self), "SoftwareEnvironment")
-  self
-}
-
-
-#' Definition of a compute session, including its software and compute resource requirements and status.
-#'
-#' @name SoftwareSession
-#' @param alternateNames Alternate names (aliases) for the item.
-#' @param clientsLimit The maximum number of concurrent clients the session is limited to.
-#' @param clientsRequest The maximum number of concurrent clients requested for the session.
-#' @param cpuLimit The amount of CPU the session is limited to.
-#' @param cpuRequest The amount of CPU requested for the session.
-#' @param dateEnd The date-time that the session ended.
-#' @param dateStart The date-time that the session began.
-#' @param description A description of the item.
-#' @param durationLimit The maximum duration (seconds) the session is limited to.
-#' @param durationRequest The maximum duration (seconds) requested for the session.
-#' @param environment The software environment to execute this session in.
-#' @param id The identifier for this item.
-#' @param identifiers Any kind of identifier for any kind of Thing.
-#' @param images Images of the item.
-#' @param memoryLimit The amount of memory that the session is limited to.
-#' @param memoryRequest The amount of memory requested for the session.
-#' @param meta Metadata associated with this item.
-#' @param name The name of the item.
-#' @param networkTransferLimit The amount of network data transfer (GiB) that the session is limited to.
-#' @param networkTransferRequest The amount of network data transfer (GiB) requested for the session.
-#' @param status The status of the session (starting, stopped, etc).
-#' @param timeoutLimit The inactivity timeout (seconds) the session is limited to.
-#' @param timeoutRequest The inactivity timeout (seconds) requested for the session.
-#' @param url The URL of the item.
-#' @param volumeMounts Volumes to mount in the session.
-#' @seealso \code{\link{Thing}}
-#' @export
-SoftwareSession <- function(
-  alternateNames,
-  clientsLimit,
-  clientsRequest,
-  cpuLimit,
-  cpuRequest,
-  dateEnd,
-  dateStart,
-  description,
-  durationLimit,
-  durationRequest,
-  environment,
-  id,
-  identifiers,
-  images,
-  memoryLimit,
-  memoryRequest,
-  meta,
-  name,
-  networkTransferLimit,
-  networkTransferRequest,
-  status,
-  timeoutLimit,
-  timeoutRequest,
-  url,
-  volumeMounts
-){
-  self <- Thing(
-    alternateNames = alternateNames,
-    description = description,
-    id = id,
-    identifiers = identifiers,
-    images = images,
-    meta = meta,
-    name = name,
-    url = url
-  )
-  self$type <- as_scalar("SoftwareSession")
-  self[["clientsLimit"]] <- check_property("SoftwareSession", "clientsLimit", FALSE, missing(clientsLimit), "numeric", clientsLimit)
-  self[["clientsRequest"]] <- check_property("SoftwareSession", "clientsRequest", FALSE, missing(clientsRequest), "numeric", clientsRequest)
-  self[["cpuLimit"]] <- check_property("SoftwareSession", "cpuLimit", FALSE, missing(cpuLimit), "numeric", cpuLimit)
-  self[["cpuRequest"]] <- check_property("SoftwareSession", "cpuRequest", FALSE, missing(cpuRequest), "numeric", cpuRequest)
-  self[["dateEnd"]] <- check_property("SoftwareSession", "dateEnd", FALSE, missing(dateEnd), Union(Date, "character"), dateEnd)
-  self[["dateStart"]] <- check_property("SoftwareSession", "dateStart", FALSE, missing(dateStart), Union(Date, "character"), dateStart)
-  self[["durationLimit"]] <- check_property("SoftwareSession", "durationLimit", FALSE, missing(durationLimit), "numeric", durationLimit)
-  self[["durationRequest"]] <- check_property("SoftwareSession", "durationRequest", FALSE, missing(durationRequest), "numeric", durationRequest)
-  self[["environment"]] <- check_property("SoftwareSession", "environment", FALSE, missing(environment), SoftwareEnvironment, environment)
-  self[["memoryLimit"]] <- check_property("SoftwareSession", "memoryLimit", FALSE, missing(memoryLimit), "numeric", memoryLimit)
-  self[["memoryRequest"]] <- check_property("SoftwareSession", "memoryRequest", FALSE, missing(memoryRequest), "numeric", memoryRequest)
-  self[["networkTransferLimit"]] <- check_property("SoftwareSession", "networkTransferLimit", FALSE, missing(networkTransferLimit), "numeric", networkTransferLimit)
-  self[["networkTransferRequest"]] <- check_property("SoftwareSession", "networkTransferRequest", FALSE, missing(networkTransferRequest), "numeric", networkTransferRequest)
-  self[["status"]] <- check_property("SoftwareSession", "status", FALSE, missing(status), Enum("unknown", "starting", "started", "stopping", "stopped", "failed"), status)
-  self[["timeoutLimit"]] <- check_property("SoftwareSession", "timeoutLimit", FALSE, missing(timeoutLimit), "numeric", timeoutLimit)
-  self[["timeoutRequest"]] <- check_property("SoftwareSession", "timeoutRequest", FALSE, missing(timeoutRequest), "numeric", timeoutRequest)
-  self[["volumeMounts"]] <- check_property("SoftwareSession", "volumeMounts", FALSE, missing(volumeMounts), Array(VolumeMount), volumeMounts)
-  class(self) <- c(class(self), "SoftwareSession")
-  self
-}
-
-
 #' Computer programming source code. Example: Full (compile ready) solutions, code snippet samples, scripts, templates.
 #'
 #' @name SoftwareSourceCode
@@ -3288,6 +3149,229 @@ SoftwareSourceCode <- function(
   self[["softwareRequirements"]] <- check_property("SoftwareSourceCode", "softwareRequirements", FALSE, missing(softwareRequirements), Array(Union(SoftwareSourceCode, SoftwareApplication, "character")), softwareRequirements)
   self[["targetProducts"]] <- check_property("SoftwareSourceCode", "targetProducts", FALSE, missing(targetProducts), Array(SoftwareApplication), targetProducts)
   class(self) <- c(class(self), "SoftwareSourceCode")
+  self
+}
+
+
+#' A computational environment.
+#'
+#' @name SoftwareEnvironment
+#' @param name The name of the item. \bold{Required}.
+#' @param about The subject matter of the content.
+#' @param adds The packages that this environment adds to the base environments listed under `extends` (if any).,
+#' @param alternateNames Alternate names (aliases) for the item.
+#' @param authors The authors of this creative work.
+#' @param codeRepository Link to the repository where the un-compiled, human readable code and related code is located.
+#' @param codeSampleType What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template.
+#' @param content The structured content of this creative work c.f. property `text`.
+#' @param dateAccepted Date/time of acceptance.
+#' @param dateCreated Date/time of creation.
+#' @param dateModified Date/time of most recent modification.
+#' @param datePublished Date of first publication.
+#' @param dateReceived Date/time that work was received.
+#' @param description A description of the item.
+#' @param editors People who edited the `CreativeWork`.
+#' @param extends Other environments that this environment extends by adding or removing packages.,
+#' @param fundedBy Grants that funded the `CreativeWork`; reverse of `fundedItems`.
+#' @param funders People or organizations that funded the `CreativeWork`.
+#' @param genre Genre of the creative work, broadcast channel or group.
+#' @param id The identifier for this item.
+#' @param identifiers Any kind of identifier for any kind of Thing.
+#' @param images Images of the item.
+#' @param isPartOf An item or other CreativeWork that this CreativeWork is a part of.
+#' @param keywords Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas.
+#' @param licenses License documents that applies to this content, typically indicated by URL.
+#' @param maintainers The people or organizations who maintain the software.
+#' @param meta Metadata associated with this item.
+#' @param parts Elements of the collection which can be a variety of different elements, such as Articles, Datatables, Tables and more.
+#' @param programmingLanguage The computer programming language.
+#' @param publisher A publisher of the CreativeWork.
+#' @param references References to other creative works, such as another publication, web page, scholarly article, etc.
+#' @param removes The packages that this environment removes from the base environments listed under `extends` (if any).,
+#' @param runtimePlatform Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0).
+#' @param softwareRequirements Dependency requirements for the software.
+#' @param targetProducts Target operating system or product to which the code applies.
+#' @param text The textual content of this creative work.
+#' @param title The title of the creative work.
+#' @param url The URL of the item.
+#' @param version The version of the creative work.
+#' @seealso \code{\link{SoftwareSourceCode}}
+#' @export
+SoftwareEnvironment <- function(
+  name,
+  about,
+  adds,
+  alternateNames,
+  authors,
+  codeRepository,
+  codeSampleType,
+  content,
+  dateAccepted,
+  dateCreated,
+  dateModified,
+  datePublished,
+  dateReceived,
+  description,
+  editors,
+  extends,
+  fundedBy,
+  funders,
+  genre,
+  id,
+  identifiers,
+  images,
+  isPartOf,
+  keywords,
+  licenses,
+  maintainers,
+  meta,
+  parts,
+  programmingLanguage,
+  publisher,
+  references,
+  removes,
+  runtimePlatform,
+  softwareRequirements,
+  targetProducts,
+  text,
+  title,
+  url,
+  version
+){
+  self <- SoftwareSourceCode(
+    name = name,
+    about = about,
+    alternateNames = alternateNames,
+    authors = authors,
+    codeRepository = codeRepository,
+    codeSampleType = codeSampleType,
+    content = content,
+    dateAccepted = dateAccepted,
+    dateCreated = dateCreated,
+    dateModified = dateModified,
+    datePublished = datePublished,
+    dateReceived = dateReceived,
+    description = description,
+    editors = editors,
+    fundedBy = fundedBy,
+    funders = funders,
+    genre = genre,
+    id = id,
+    identifiers = identifiers,
+    images = images,
+    isPartOf = isPartOf,
+    keywords = keywords,
+    licenses = licenses,
+    maintainers = maintainers,
+    meta = meta,
+    parts = parts,
+    programmingLanguage = programmingLanguage,
+    publisher = publisher,
+    references = references,
+    runtimePlatform = runtimePlatform,
+    softwareRequirements = softwareRequirements,
+    targetProducts = targetProducts,
+    text = text,
+    title = title,
+    url = url,
+    version = version
+  )
+  self$type <- as_scalar("SoftwareEnvironment")
+  self[["name"]] <- check_property("SoftwareEnvironment", "name", TRUE, missing(name), "character", name)
+  self[["adds"]] <- check_property("SoftwareEnvironment", "adds", FALSE, missing(adds), Array(SoftwareSourceCode), adds)
+  self[["extends"]] <- check_property("SoftwareEnvironment", "extends", FALSE, missing(extends), Array(SoftwareEnvironment), extends)
+  self[["removes"]] <- check_property("SoftwareEnvironment", "removes", FALSE, missing(removes), Array(SoftwareSourceCode), removes)
+  class(self) <- c(class(self), "SoftwareEnvironment")
+  self
+}
+
+
+#' Definition of a compute session, including its software and compute resource requirements and status.
+#'
+#' @name SoftwareSession
+#' @param alternateNames Alternate names (aliases) for the item.
+#' @param clientsLimit The maximum number of concurrent clients the session is limited to.
+#' @param clientsRequest The maximum number of concurrent clients requested for the session.
+#' @param cpuLimit The amount of CPU the session is limited to.
+#' @param cpuRequest The amount of CPU requested for the session.
+#' @param dateEnd The date-time that the session ended.
+#' @param dateStart The date-time that the session began.
+#' @param description A description of the item.
+#' @param durationLimit The maximum duration (seconds) the session is limited to.
+#' @param durationRequest The maximum duration (seconds) requested for the session.
+#' @param environment The software environment to execute this session in.
+#' @param id The identifier for this item.
+#' @param identifiers Any kind of identifier for any kind of Thing.
+#' @param images Images of the item.
+#' @param memoryLimit The amount of memory that the session is limited to.
+#' @param memoryRequest The amount of memory requested for the session.
+#' @param meta Metadata associated with this item.
+#' @param name The name of the item.
+#' @param networkTransferLimit The amount of network data transfer (GiB) that the session is limited to.
+#' @param networkTransferRequest The amount of network data transfer (GiB) requested for the session.
+#' @param status The status of the session (starting, stopped, etc).
+#' @param timeoutLimit The inactivity timeout (seconds) the session is limited to.
+#' @param timeoutRequest The inactivity timeout (seconds) requested for the session.
+#' @param url The URL of the item.
+#' @param volumeMounts Volumes to mount in the session.
+#' @seealso \code{\link{Thing}}
+#' @export
+SoftwareSession <- function(
+  alternateNames,
+  clientsLimit,
+  clientsRequest,
+  cpuLimit,
+  cpuRequest,
+  dateEnd,
+  dateStart,
+  description,
+  durationLimit,
+  durationRequest,
+  environment,
+  id,
+  identifiers,
+  images,
+  memoryLimit,
+  memoryRequest,
+  meta,
+  name,
+  networkTransferLimit,
+  networkTransferRequest,
+  status,
+  timeoutLimit,
+  timeoutRequest,
+  url,
+  volumeMounts
+){
+  self <- Thing(
+    alternateNames = alternateNames,
+    description = description,
+    id = id,
+    identifiers = identifiers,
+    images = images,
+    meta = meta,
+    name = name,
+    url = url
+  )
+  self$type <- as_scalar("SoftwareSession")
+  self[["clientsLimit"]] <- check_property("SoftwareSession", "clientsLimit", FALSE, missing(clientsLimit), "numeric", clientsLimit)
+  self[["clientsRequest"]] <- check_property("SoftwareSession", "clientsRequest", FALSE, missing(clientsRequest), "numeric", clientsRequest)
+  self[["cpuLimit"]] <- check_property("SoftwareSession", "cpuLimit", FALSE, missing(cpuLimit), "numeric", cpuLimit)
+  self[["cpuRequest"]] <- check_property("SoftwareSession", "cpuRequest", FALSE, missing(cpuRequest), "numeric", cpuRequest)
+  self[["dateEnd"]] <- check_property("SoftwareSession", "dateEnd", FALSE, missing(dateEnd), Union(Date, "character"), dateEnd)
+  self[["dateStart"]] <- check_property("SoftwareSession", "dateStart", FALSE, missing(dateStart), Union(Date, "character"), dateStart)
+  self[["durationLimit"]] <- check_property("SoftwareSession", "durationLimit", FALSE, missing(durationLimit), "numeric", durationLimit)
+  self[["durationRequest"]] <- check_property("SoftwareSession", "durationRequest", FALSE, missing(durationRequest), "numeric", durationRequest)
+  self[["environment"]] <- check_property("SoftwareSession", "environment", FALSE, missing(environment), SoftwareEnvironment, environment)
+  self[["memoryLimit"]] <- check_property("SoftwareSession", "memoryLimit", FALSE, missing(memoryLimit), "numeric", memoryLimit)
+  self[["memoryRequest"]] <- check_property("SoftwareSession", "memoryRequest", FALSE, missing(memoryRequest), "numeric", memoryRequest)
+  self[["networkTransferLimit"]] <- check_property("SoftwareSession", "networkTransferLimit", FALSE, missing(networkTransferLimit), "numeric", networkTransferLimit)
+  self[["networkTransferRequest"]] <- check_property("SoftwareSession", "networkTransferRequest", FALSE, missing(networkTransferRequest), "numeric", networkTransferRequest)
+  self[["status"]] <- check_property("SoftwareSession", "status", FALSE, missing(status), Enum("unknown", "starting", "started", "stopping", "stopped", "failed"), status)
+  self[["timeoutLimit"]] <- check_property("SoftwareSession", "timeoutLimit", FALSE, missing(timeoutLimit), "numeric", timeoutLimit)
+  self[["timeoutRequest"]] <- check_property("SoftwareSession", "timeoutRequest", FALSE, missing(timeoutRequest), "numeric", timeoutRequest)
+  self[["volumeMounts"]] <- check_property("SoftwareSession", "volumeMounts", FALSE, missing(volumeMounts), Array(VolumeMount), volumeMounts)
+  class(self) <- c(class(self), "SoftwareSession")
   self
 }
 
@@ -3828,7 +3912,7 @@ ContactPointTypes <- Union(ContactPoint, PostalAddress)
 #' All type schemas that are derived from CreativeWork
 #'
 #' @export
-CreativeWorkTypes <- Union(CreativeWork, Article, AudioObject, Collection, Datatable, Figure, ImageObject, MediaObject, Periodical, PublicationIssue, PublicationVolume, SoftwareApplication, SoftwareSourceCode, Table, VideoObject)
+CreativeWorkTypes <- Union(CreativeWork, Article, AudioObject, Collection, Datatable, Figure, ImageObject, MediaObject, Periodical, PublicationIssue, PublicationVolume, SoftwareApplication, SoftwareEnvironment, SoftwareSourceCode, Table, VideoObject)
 
 
 #' All type schemas that are derived from Entity
@@ -3877,6 +3961,12 @@ Node <- Union("NULL", "logical", "numeric", "character", Array(Any()), "list", E
 #'
 #' @export
 NumberValidatorTypes <- Union(NumberValidator, IntegerValidator)
+
+
+#' All type schemas that are derived from SoftwareSourceCode
+#'
+#' @export
+SoftwareSourceCodeTypes <- Union(SoftwareSourceCode, SoftwareEnvironment)
 
 
 #' All type schemas that are derived from Thing

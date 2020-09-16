@@ -1,0 +1,22 @@
+title: ContainerRecipe
+'@id': stencila:ContainerRecipe
+extends: SoftwareSourceCode
+role: primary
+status: experimental
+category: code
+description: The set of build instructions, typically in a text file, to generate a linux container image
+properties:
+  imageRuntimePlatform:
+    '@id': stencila:imageRuntimePlatform
+    description: The container technology (e.g., Docker or Singularity)
+    type: string
+  entrypoint:
+    '@id': stencila:entrypoint
+    description: The container entrypoint (a runscript or ENTRYPOINT directive)
+    type: string
+  command:
+    '@id': stencila:command
+    description: The container default command (a CMD directive)
+    type: string
+required:
+  - name
